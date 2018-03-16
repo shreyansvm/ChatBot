@@ -1,0 +1,47 @@
+Python programmers working with NLP have two great high-level libraries to choose from: TextBlob and spaCy. 
+spaCy is easy to use and fast, though it can be memory intensive and doesn’t attempt to cover the whole of statistical NLP. 
+TextBlob wraps the sprawling NLTK library in a very approachable API, so while it can be slower, it’s quite comprehensive.
+
+########### Brobot - a simple bot using TextBlob
+https://apps.worldwritable.com/tutorials/chatbot/
+https://github.com/lizadaly/brobot/blob/master/broize.py
+
+########### To install Flask in ~/ChatBot directory :
+# Flask tutorial :  https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world
+virtualenv venv
+source venv/bin/activate
+pip install flask
+# had to re-install textblob inside flask :
+pip install textblob
+pip install config
+# run the program that uses Flask while in that enviornment
+
+# to deactive/exit enviornment
+deactivate
+# to start again :
+source bin/activate
+
+
+########### spaCy : https://spacy.io/
+sudo -H pip install spacy
+# download models for spacy. xx stands for multi-language
+sudo -H python -m spacy download xx
+sudo -H python -m spacy download en
+
+
+########### Textblob : http://textblob.readthedocs.io/en/dev/
+sudo -H pip install textblob
+sudo -H python -m textblob.download_corpora
+# in python console :
+import nltk
+nltk.download('punkt')
+nltk.download('averaged_perceptron_tagger')
+nltk.download('brown')
+nltk.download('wordnet')
+
+# Textblob quick guide :
+http://textblob.readthedocs.io/en/dev/quickstart.html#create-a-textblob
+# Handling non-english text in Python :
+# https://graduate.artsci.wustl.edu/files/graduatepages/imce/constanza/cfs_methodsworkshop_python.pdf
+
+
