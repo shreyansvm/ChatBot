@@ -17,6 +17,10 @@ from flask import Flask
 import config
 
 # TODO : Assign user an avatar and call it by that name
+AVATAR = ["WHALE", "EARTHWORM", "ELEPHANT"]
+# Default user avatar
+user_avatar = ""
+AVATAR_USER_RESPONSE = ["nah", "no", "no way!", "Bye", "that's rude"]
 
 GREETING_KEYWORDS = ("hello", "hi", "greetings", "sup", "what's up", "howdy", "how are you", "how")
 GREETING_RESPONSES = ["'sup bro", "hey", "Hola Amigo!", "howdy", "watcha doing?"]
@@ -33,8 +37,7 @@ USER_INIT_BYE = ["Ok bye!", "cya", "astalavista!", "bye"]
 USER_INIT_BYE_COCO_RESP = ["Coolio, take care.", "bye", "astalavista!", "Cya", "you bet!"]
 
 def cocoResponds(message):
-    global GREETING_RECEIVED
-    global GREETING_EXCHANGED
+    global GREETING_RECEIVED, GREETING_EXCHANGED
     msg = TextBlob(message)
     for word in msg.words:
         if GREETING_RECEIVED == 0:
@@ -44,6 +47,34 @@ def cocoResponds(message):
                 print("Coco >> ", random.choice(GREETING_RESPONSES))
                 GREETING_EXCHANGED = 1
 
+def findIfUserLikesTheAvatar(avatarUserResp):
+    userHappyForAvatar = 1
+    avatarUserRespMsg = TextBlob(avatarUserResp)
+    for word in avatarUserRespMsg.words:
+        if word.lower() in AVATAR_USER_RESPONSE:
+            return 0
+
+    return userHappyForAvatar
+
+'''
+CocoBot assigns a random avatar to the user
+'''
+def cocoAssignsAvatar():
+    global user_avatar
+    avatar = random.choice(AVATAR)
+    print("Coco >> I love ", avatar, ". Can I call you - ", avatar, "?")
+    avatarUserResp = raw_input(str(user_avatar) + " >> ")
+
+    while findIfUserLikesTheAvatar(avatarUserResp) == 0:
+        AVATAR.remove(avatar)
+        # TODO : How will you handle 'IndexError: list index out of range' when all avatars from AVATAR are popped
+        avatar = random.choice(AVATAR)
+        print("Coco >> How about ", avatar, "?")
+        avatarUserResp = raw_input(str(user_avatar) + " >> ")
+
+'''
+If User or CocoBot wishes to end the chat
+'''
 def cocoWantsABreak(type):
     if type == "cocoInitBye":
         print("Coco >> ", random.choice(COCO_INIT_BYE))
@@ -51,6 +82,7 @@ def cocoWantsABreak(type):
         print("Coco >> ", random.choice(COCO_FINAL_BYE))
     elif type == "userInitCocoFinalBye":
         print("Coco >> ", random.choice(USER_INIT_BYE_COCO_RESP))
+
 
 def cocoBot(message):
     cocoResponds(message)
@@ -75,12 +107,16 @@ if __name__ == "__main__":
     while 1:
         if initialGreetings == 0:
             cocoBot(welcome)
+            # TODO : calling here also doesn't work.
+            # cocoAssignsAvatar()
         else:
             cocoBot(response)
         initialGreetings = 1
 
         response = raw_input()
         responseMsg = TextBlob(response)
+        # TODO : calling here is not working
+        cocoAssignsAvatar()
 
         itsTimeForBye = 0
         for word in responseMsg.words:
@@ -91,7 +127,7 @@ if __name__ == "__main__":
 
         if elapsed >= runTime :
             cocoWantsABreak("cocoInitBye")
-            response = raw_input()
+            response = raw_input(str(user_avatar) + " >> ")
             cocoWantsABreak("cocoFinalBye")
             break
 
