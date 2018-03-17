@@ -6,6 +6,12 @@ TextBlob wraps the sprawling NLTK library in a very approachable API, so while i
 https://apps.worldwritable.com/tutorials/chatbot/
 https://github.com/lizadaly/brobot/blob/master/broize.py
 
+########### Chatbot design :
+https://uxdesign.cc/designing-a-chatbot-conversation-how-to-keep-users-in-the-loop-4d3a29e44de4
+https://chatbotsmagazine.com/how-to-improve-your-chatbot-in-3-simple-steps-36f9d26d7f2f
+
+
+
 ########### To install Flask in ~/ChatBot directory :
 # Flask tutorial :  https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world
 virtualenv venv
