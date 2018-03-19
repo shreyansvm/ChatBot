@@ -9,7 +9,10 @@ https://github.com/lizadaly/brobot/blob/master/broize.py
 ########### Chatbot design :
 https://uxdesign.cc/designing-a-chatbot-conversation-how-to-keep-users-in-the-loop-4d3a29e44de4
 https://chatbotsmagazine.com/how-to-improve-your-chatbot-in-3-simple-steps-36f9d26d7f2f
+https://medium.com/@allanmeriales/a-simple-chatbot-using-nltk-chat-640456dcdf72
 
+########### Chatbots for other apps like Slack, Facebook, Telegram :
+https://www.fullstackpython.com/blog/build-first-slack-bot-python.html
 
 
 ########### To install Flask in ~/ChatBot directory :
