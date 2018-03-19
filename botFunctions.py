@@ -57,3 +57,29 @@ def cocoWantsABreak(type):
     elif type == "userInitCocoFinalBye":
         print("Coco >> ", random.choice(USER_INIT_BYE_COCO_RESP))
 # Add all functions here
+
+'''
+Check user has typed in a language other than English
+'''
+def notInEnglish(response):
+    responseMsg = TextBlob(response)
+    if responseMsg.detect_language() != 'en':
+        print("User response is not in English")
+        # TODO : Do something if not in English
+
+'''
+If user enters in some other language (not English),
+    CocoBot also acts funny by starting to talk in the same language.
+'''
+def setBaseLanguage(lang):
+    print("Global language set to - ", lang)
+    # TODO : can you set the global language type (for each msg CocoBot replies) in the language detected by notInEnglish()
+
+'''
+CocoBot gets funny. Starts talking in a random language and checks if the USER knows anything
+'''
+def cocoBotTalksInDiffLang():
+    print("Inside cocoBotTalksInDiffLang")
+    # TODO : select a random language and start talking
+    # TODO : get user reaction and change back to known language.
+
