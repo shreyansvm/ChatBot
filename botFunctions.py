@@ -38,6 +38,11 @@ def cocoAssignsAvatar():
     print("Coco >> I love ", avatar, ". Can I call you - ", avatar, "?")
     avatarUserResp = raw_input(str(user_avatar) + " >> ")
 
+    for word in TextBlob(avatarUserResp).words:
+        if word.lower() in USER_INIT_BYE:
+            cocoWantsABreak("userInitCocoFinalBye")
+            exit(0)
+
     while findIfUserLikesTheAvatar(avatarUserResp) == 0:
         print("Inside while of cocoAssignsAvatar")
         AVATAR.remove(avatar)
@@ -61,19 +66,26 @@ def cocoWantsABreak(type):
 '''
 Check user has typed in a language other than English
 '''
-def notInEnglish(response):
+def chechLanguage(response):
     responseMsg = TextBlob(response)
-    if responseMsg.detect_language() != 'en':
-        print("User response is not in English")
-        # TODO : Do something if not in English
+    # TODO : Needs atleast 3 characters to detect a language, otherwise it crashes with following msg
+    # textblob.exceptions.TranslatorError: Must provide a string with at least 3 characters.
+
+    # for now doing the following :
+    if len(response) <= 2:
+        setBaseLanguage('en')
+    elif len(response) > 2:
+        setBaseLanguage(responseMsg.detect_language())
 
 '''
 If user enters in some other language (not English),
     CocoBot also acts funny by starting to talk in the same language.
 '''
 def setBaseLanguage(lang):
+    BASE_LANGUAGE = lang
     print("Global language set to - ", lang)
-    # TODO : can you set the global language type (for each msg CocoBot replies) in the language detected by notInEnglish()
+    print("BASE_LANGUAGE - ", BASE_LANGUAGE)
+    # TODO : Do something if not in English
 
 '''
 CocoBot gets funny. Starts talking in a random language and checks if the USER knows anything
