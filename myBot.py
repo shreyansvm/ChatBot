@@ -30,7 +30,6 @@ if __name__ == "__main__":
     runTime = 60 ;# seconds
     startTime = time.time()
 
-    # TODO : how can you keep the bot alive for infinite duration OR until the user enters some keyword like 'Bye'
     while 1:
         if initialGreetings == 0:
             cocoBot(welcome)
@@ -38,6 +37,7 @@ if __name__ == "__main__":
             cocoBot(response)
 
         response = raw_input()
+        chechLanguage(response)
         responseMsg = TextBlob(response)
         if initialGreetings != 1:
             cocoAssignsAvatar()
